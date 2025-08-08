@@ -14,9 +14,9 @@
       color: #00ff00;
       font-family: monospace;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    /* Fixed header & footer */
     header, footer {
       position: fixed;
       left: 0;
@@ -41,7 +41,6 @@
       border-top: 2px solid #00ff00;
     }
 
-    /* Scrollable content area */
     .content {
       padding: 6rem 1rem 6rem 1rem;
       max-width: 1000px;
@@ -61,7 +60,7 @@
       box-shadow: 0 0 20px #00ff00;
     }
 
-    .stage, .legend, .game, .shareBox {
+    .stage, .legend, .game, .shareBox, .faq {
       margin-bottom: 4rem;
     }
 
@@ -108,7 +107,47 @@
       content: "🧬 ";
     }
 
-    /* Mutation Animations */
+    /* Menu button */
+    .menu-button {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 2rem;
+      color: #00ff00;
+      background: none;
+      border: none;
+      z-index: 10000;
+      cursor: pointer;
+    }
+
+    /* Menu overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      color: #00ff00;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9998;
+    }
+
+    .menu-overlay a {
+      color: #00ff00;
+      text-decoration: none;
+      font-size: 1.5rem;
+      margin: 1rem;
+    }
+
+    .menu-overlay.show {
+      display: flex;
+    }
+
+    /* Animations */
     @keyframes glow {
       0% { text-shadow: 0 0 0 red; }
       50% { text-shadow: 0 0 8px red; }
@@ -122,7 +161,6 @@
       75% { transform: translateX(-2px); }
     }
 
-    /* T-cell missile animation */
     @keyframes zoomToTarget {
       0% { transform: scale(1) translateX(0); opacity: 1; }
       100% { transform: scale(2) translate(80vw, -50px); opacity: 0; }
@@ -151,31 +189,58 @@
 
     .shareBox {
       text-align: center;
-      margin-top: 2rem;
+    }
+
+    .faq {
+      border-top: 1px solid #00ff00;
+      padding-top: 2rem;
+    }
+
+    .faq h3 {
+      margin-top: 1rem;
+    }
+
+    .faq p {
+      margin-left: 1rem;
     }
   </style>
 </head>
 <body>
 
+  <!-- Menu Button -->
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" id="menu">
+    <a href="#stage1" onclick="toggleMenu()">1. Mutation</a>
+    <a href="#stage2" onclick="toggleMenu()">2. Detection</a>
+    <a href="#stage3" onclick="toggleMenu()">3. Immune Response</a>
+    <a href="#simulator" onclick="toggleMenu()">Mutation Simulator</a>
+    <a href="#defender" onclick="toggleMenu()">Immune Game</a>
+    <a href="#legend" onclick="toggleMenu()">Legend</a>
+    <a href="#faq" onclick="toggleMenu()">Q&A</a>
+  </div>
+
+  <!-- Header -->
   <header>
     Cell Wars: Code vs Cancer
   </header>
 
+  <!-- Main content -->
   <div class="content">
-    <!-- CANCER STAGES -->
-    <div class="stage">
+    <div class="stage" id="stage1">
       <h2>1. Mutation Begins</h2>
       <img src="https://tse1.mm.bing.net/th/id/OIP.-I0A-nbErJofdCfPi-H9PQHaFj?pid=Api">
       <div class="caption">DNA breaks and starts multiplying out of control.</div>
     </div>
 
-    <div class="stage">
+    <div class="stage" id="stage2">
       <h2>2. Immune Cells Approach</h2>
       <img src="https://tse1.mm.bing.net/th/id/OIP.wFFrNw9tJ3CkAMLc0QbK6AHaF7?pid=Api">
       <div class="caption">White blood cells spot the intruder and begin pursuit.</div>
     </div>
 
-    <div class="stage">
+    <div class="stage" id="stage3">
       <h2>3. Contact and Attack</h2>
       <img src="https://tse2.mm.bing.net/th/id/OIP.AEqP0T_W-zrfkox9K206EQHaGq?pid=Api">
       <div class="caption">Natural killer cells grab hold and prepare for battle.</div>
@@ -187,8 +252,7 @@
       <div class="caption">Your immune army deploys for a final attack.</div>
     </div>
 
-    <!-- LEGEND -->
-    <div class="legend">
+    <div class="legend" id="legend">
       <h2>🧬 Cancer Stages Legend</h2>
       <ul>
         <li>Mutation: DNA gets damaged.</li>
@@ -198,23 +262,32 @@
       </ul>
     </div>
 
-    <!-- MUTATION SIMULATOR -->
-    <div class="game">
+    <div class="game" id="simulator">
       <h2>⚠️ Mutation Simulator</h2>
       <div class="dna" id="dnaDisplay"></div>
       <button onclick="mutateDNA()">Mutate DNA</button>
       <div class="result" id="result"></div>
     </div>
 
-    <!-- IMMUNE BLASTER -->
-    <div class="game">
+    <div class="game" id="defender">
       <h2>🚀 Immune Defender Mini-Game</h2>
       <p style="text-align:center;">Launch a T-cell at the mutation:</p>
       <button onclick="fireTCell()">🚀 Launch T-Cell</button>
       <div class="tcellResult" id="tcellResult"></div>
     </div>
 
-    <!-- SHARE -->
+    <div class="faq" id="faq">
+      <h2>❓ Questions & Answers</h2>
+      <h3>Q: Can a single mutation cause cancer?</h3>
+      <p>A: Sometimes, yes — especially in critical DNA areas that regulate cell growth.</p>
+
+      <h3>Q: Can the immune system really kill cancer?</h3>
+      <p>A: Yes! That’s the entire idea behind immunotherapy — training your T-cells to fight smarter.</p>
+
+      <h3>Q: What makes cancer so hard to beat?</h3>
+      <p>A: It mutates fast, hides well, and sometimes convinces the body it belongs there.</p>
+    </div>
+
     <div class="shareBox">
       <h2>💡 Share What You Learned</h2>
       <p>Educate someone. Or nuke misinformation. Either works.</p>
@@ -222,10 +295,12 @@
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
     <p>Buggy’s Immune Strike – Built with 💚, Code & Rage</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     const basePairs = ['A', 'T', 'C', 'G'];
     let dna = Array.from({length: 50}, () => basePairs[Math.floor(Math.random() * 4)]);
@@ -272,8 +347,11 @@
         : "😬 T-cell missed. Try again!";
     }
 
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('show');
+    }
+
     window.onload = showDNA;
   </script>
-
 </body>
 </html>
