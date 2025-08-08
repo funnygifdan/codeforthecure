@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Stages of Cancer – Interactive</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <style>
   body {
     background: #000;
@@ -119,8 +121,24 @@
 </div>
 
 <!-- IMMUNE DEFENDER MINIGAME -->
+
+
 <div class="game">
   <h2>🛡️ Immune Defender Mini-Game</h2>
+
+<p> 🧨 What Happens When You Tap “Mutate DNA”:
+	•	One of those letters randomly mutates (changes to something it’s not supposed to be).
+	•	If that new mutation happens in a danger zone (a specific spot in the sequence), we flag it as potentially cancerous.
+	•	If it lands in a safe zone, it just says “✅ Minor mutation.”
+
+Red = Mutated
+The red letters visually show you where the damage occurred.
+
+🧠 Real-life link:
+
+In real cells, mutations like this can:
+	•	Be harmless (most are)
+	•	Or break a critical gene that controls cell growth (and that’s where cancer can begin) </p>
   <p style="text-align: center;">Launch a T-cell to destroy the mutation:</p>
   <button onclick="fireTCell()">🚀 Launch T-Cell</button>
   <div class="result" id="tcellResult"></div>
