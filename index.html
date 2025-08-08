@@ -1,190 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Stages of Cancer – Interactive</title>
+  <meta charset="UTF-8">
+  <title>Stages of Cancer – Interactive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    /* Base setup */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      color: #00ff00;
+      font-family: monospace;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+    }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    /* Header & Footer */
+    header, footer {
+      background: #000;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 2px solid #0f0;
+      z-index: 10;
+    }
+    footer {
+      border-top: 2px solid #0f0;
+    }
 
-<style>
-  body {
-    background: #000;
-    color: #00ff00;
-    font-family: monospace;
-    margin: 0;
-    padding: 2rem;
-  }
-  h1, h2 {
-    text-align: center;
-    color: #00ff00;
-  }
-  .stage {
-    margin-bottom: 4rem;
-    border-top: 1px solid #00ff00;
-    padding-top: 2rem;
-  }
-  img {
-    display: block;
-    margin: 1rem auto;
-    max-width: 90%;
-    border: 2px solid #00ff00;
-    box-shadow: 0 0 20px #00ff00;
-  }
-  .caption {
-    text-align: center;
-    font-style: italic;
-    margin-top: 0.5rem;
-  }
-  /* DNA Mutation Simulator */
-  .dna {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    word-wrap: break-word;
-    text-align: center;
-  }
-  .mutated {
-    color: red;
-    text-shadow: 0 0 5px red;
-  }
-  .result {
-    margin-top: 1rem;
-    font-size: 1.4rem;
-    text-align: center;
-  }
-  button {
-    background: #00ff00;
-    color: #000;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    margin: 0.5rem auto;
-    display: block;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .legend, .game {
-    margin-top: 3rem;
-    border-top: 1px dashed #0f0;
-    padding-top: 2rem;
-  }
-  .shareBox {
-    margin-top: 3rem;
-    text-align: center;
-  }
-</style>
+    /* Scrollable body */
+    main {
+      overflow-y: auto;
+      padding: 2rem;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #00ff00;
+    }
+
+    /* Image sections */
+    .stage {
+      margin-bottom: 3rem;
+    }
+    img {
+      display: block;
+      margin: 1rem auto;
+      max-width: 90%;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px #00ff00;
+    }
+    .caption {
+      text-align: center;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    /* Legend */
+    .legend {
+      margin-top: 3rem;
+      border-top: 1px dashed #0f0;
+      padding-top: 2rem;
+    }
+
+    /* Simulator & mini-game */
+    .game {
+      margin-top: 3rem;
+      border-top: 1px dashed #0f0;
+      padding-top: 2rem;
+    }
+    .dna {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      word-wrap: break-word;
+      text-align: center;
+    }
+    .mutated {
+      color: red;
+      text-shadow: 0 0 5px red;
+    }
+    .result {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+    button {
+      background: #00ff00;
+      color: #000;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin: 0.5rem auto;
+      display: block;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Share area */
+    .shareBox {
+      margin-top: 3rem;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+  <div class="wrapper">
+    <header>
+      <h1>Stages of Cancer – Interactive</h1>
+    </header>
 
-<h1>Stages of Cancer – Interactive</h1>
+    <main>
+      <!-- Visual Stages -->
+      <div class="stage">
+        <h2>1. Mutation Begins</h2>
+        <img src="https://tse1.mm.bing.net/th/id/OIP.-I0A-nbErJofdCfPi-H9PQHaFj?pid=Api" alt="Cancer cells multiplying">
+        <div class="caption">A cell's DNA is damaged. It forgets how to stop growing.</div>
+      </div>
+      <div class="stage">
+        <h2>2. Immune Cells Approach</h2>
+        <img src="https://tse1.mm.bing.net/th/id/OIP.wFFrNw9tJ3CkAMLc0QbK6AHaF7?pid=Api" alt="Immune cells attach to cancer">
+        <div class="caption">White blood cells lock onto the rogue cell.</div>
+      </div>
+      <div class="stage">
+        <h2>3. Contact and Attack</h2>
+        <img src="https://tse2.mm.bing.net/th/id/OIP.AEqP0T_W-zrfkox9K206EQHaGq?pid=Api" alt="NK cell attacking cancer">
+        <div class="caption">Natural Killer cells begin the assault.</div>
+      </div>
+      <div class="stage">
+        <h2>4. Full Immune Response</h2>
+        <img src="https://tse4.mm.bing.net/th/id/OIP.TDlfsWGP4YUZiBqUNihZpgHaEK?pid=Api" alt="Immune system fights back">
+        <div class="caption">Your immune system goes all in—but the fight can be bloody.</div>
+      </div>
 
-<!-- CANCER STAGES VISUALS -->
-<div class="stage">
-  <h2>1. Mutation Begins</h2>
-  <img src="https://tse1.mm.bing.net/th/id/OIP.-I0A-nbErJofdCfPi-H9PQHaFj?pid=Api" alt="Cancer cells multiplying">
-  <div class="caption">A cell's DNA is damaged. It forgets how to stop growing.</div>
-</div>
+      <!-- Legend -->
+      <div class="legend">
+        <h2>🧬 Cancer Stages Legend</h2>
+        <ul>
+          <li><strong>Mutation:</strong> DNA breaks and loses its code.</li>
+          <li><strong>Detection:</strong> Immune system spots the rebel copy.</li>
+          <li><strong>Attachment:</strong> Defender cells lock on.</li>
+          <li><strong>Destruction:</strong> Immune forces strike back.</li>
+        </ul>
+      </div>
 
-<div class="stage">
-  <h2>2. Immune Cells Approach</h2>
-  <img src="https://tse1.mm.bing.net/th/id/OIP.wFFrNw9tJ3CkAMLc0QbK6AHaF7?pid=Api" alt="Immune cells attach to cancer">
-  <div class="caption">White blood cells see something's wrong and lock on.</div>
-</div>
+      <!-- Mutation Simulator -->
+      <div class="game">
+        <h2>⚠️ Mutation Simulator</h2>
+        <div class="dna" id="dnaDisplay"></div>
+        <button onclick="mutateDNA()">Mutate DNA</button>
+        <div class="result" id="result"></div>
+      </div>
 
-<div class="stage">
-  <h2>3. Contact and Attack</h2>
-  <img src="https://tse2.mm.bing.net/th/id/OIP.AEqP0T_W-zrfkox9K206EQHaGq?pid=Api" alt="NK cell attacking cancer">
-  <div class="caption">Natural Killer cells begin destroying the mutated cell.</div>
-</div>
+      <!-- Immune Defender Mini-Game -->
+      <div class="game">
+        <h2>🛡️ Immune Defender Mini-Game</h2>
+        <p style="text-align: center;">Launch a T-cell to destroy the mutation:</p>
+        <button onclick="fireTCell()">🚀 Launch T-Cell</button>
+        <div class="result" id="tcellResult"></div>
+      </div>
 
-<div class="stage">
-  <h2>4. Full Immune Response</h2>
-  <img src="https://tse4.mm.bing.net/th/id/OIP.TDlfsWGP4YUZiBqUNihZpgHaEK?pid=Api" alt="Immune system fights back">
-  <div class="caption">The immune system sends everything it’s got to stop the threat.</div>
-</div>
+      <!-- Share Prompt -->
+      <div class="shareBox">
+        <h2>💡 Share What You Learned</h2>
+        <p>Knowledge is power. Spread this page to someone you care about.</p>
+        <button onclick="alert('Copied! (You can copy the URL yourself 😉)')">🔗 Copy Link</button>
+      </div>
+    </main>
 
-<!-- LEGEND -->
-<div class="legend">
-  <h2>🧬 Cancer Stages Legend</h2>
-  <ul>
-    <li><strong>Mutation:</strong> DNA breaks and the cell forgets the rules.</li>
-    <li><strong>Detection:</strong> Immune cells look for abnormal behavior.</li>
-    <li><strong>Attachment:</strong> Killer cells connect with the bad cell.</li>
-    <li><strong>Destruction:</strong> The immune system launches the attack.</li>
-  </ul>
-</div>
+    <footer>
+      <p>Powered by Code + Curiosity | Buggy’s Cancer Education</p>
+    </footer>
+  </div>
 
-<!-- DNA MUTATION SIMULATOR -->
-<div class="game">
-  <h2>⚠️ Mutation Simulator</h2>
-  <div class="dna" id="dnaDisplay"></div>
-  <button onclick="mutateDNA()">Mutate DNA</button>
-  <div class="result" id="result"></div>
-</div>
+  <script>
+    const basePairs = ['A', 'T', 'C', 'G'];
+    let dna = Array.from({length: 50}, () => basePairs[Math.floor(Math.random() * 4)]);
+    const dangerZones = [5, 12, 25, 33];
 
-<!-- IMMUNE DEFENDER MINIGAME -->
+    function showDNA() {
+      const display = dna.map((base, i) => `<span id="bp${i}">${base}</span>`).join('');
+      document.getElementById('dnaDisplay').innerHTML = display;
+    }
 
+    function mutateDNA() {
+      const idx = Math.floor(Math.random() * dna.length);
+      const orig = dna[idx];
+      const newBase = basePairs.filter(b => b !== orig)[Math.floor(Math.random() * 3)];
+      dna[idx] = newBase;
+      document.getElementById(`bp${idx}`).classList.add("mutated");
 
-<div class="game">
-  <h2>🛡️ Immune Defender Mini-Game</h2>
+      const result = dangerZones.includes(idx)
+        ? "⚠️ Dangerous Mutation! This cell may become cancerous!"
+        : "✅ Minor Mutation. No cancer detected.";
 
-<p> 🧨 What Happens When You Tap “Mutate DNA”:
-	•	One of those letters randomly mutates (changes to something it’s not supposed to be).
-	•	If that new mutation happens in a danger zone (a specific spot in the sequence), we flag it as potentially cancerous.
-	•	If it lands in a safe zone, it just says “✅ Minor mutation.”
+      document.getElementById('result').innerText = result;
+    }
 
-Red = Mutated
-The red letters visually show you where the damage occurred.
+    function fireTCell() {
+      const hit = Math.random() > 0.4;
+      document.getElementById('tcellResult').innerText = hit
+        ? "💥 T-cell destroyed the mutation!"
+        : "😬 The T-cell missed! Try again!";
+    }
 
-🧠 Real-life link:
-
-In real cells, mutations like this can:
-	•	Be harmless (most are)
-	•	Or break a critical gene that controls cell growth (and that’s where cancer can begin) </p>
-  <p style="text-align: center;">Launch a T-cell to destroy the mutation:</p>
-  <button onclick="fireTCell()">🚀 Launch T-Cell</button>
-  <div class="result" id="tcellResult"></div>
-</div>
-
-<!-- SHARE -->
-<div class="shareBox">
-  <h2>💡 Share What You Learned</h2>
-  <p>Knowledge is power. Show this page to someone you care about.</p>
-  <button onclick="alert('Copied! (Not really, but you can copy the URL yourself 😉)')">🔗 Copy Link</button>
-</div>
-
-<!-- JS SCRIPT -->
-<script>
-  const basePairs = ['A', 'T', 'C', 'G'];
-  let dna = Array.from({length: 50}, () => basePairs[Math.floor(Math.random() * 4)]);
-  const dangerZones = [5, 12, 25, 33];
-
-  function showDNA() {
-    const display = dna.map((base, i) => {
-      return `<span id="bp${i}">${base}</span>`;
-    }).join('');
-    document.getElementById('dnaDisplay').innerHTML = display;
-  }
-
-  function mutateDNA() {
-    const mutationPoint = Math.floor(Math.random() * dna.length);
-    let original = dna[mutationPoint];
-    let newBase = basePairs.filter(bp => bp !== original)[Math.floor(Math.random() * 3)];
-    dna[mutationPoint] = newBase;
-    document.getElementById(`bp${mutationPoint}`).classList.add("mutated");
-    const isCancerous = dangerZones.includes(mutationPoint);
-    document.getElementById('result').innerText = isCancerous
-      ? "⚠️ Dangerous Mutation! This cell may become cancerous!"
-      : "✅ Minor Mutation. No cancer detected.";
-  }
-
-  function fireTCell() {
-    const hit = Math.random() > 0.4;
-    document.getElementById('tcellResult').innerText = hit
-      ? "💥 T-cell destroyed the mutation!"
-      : "😬 The T-cell missed! Try again!";
-  }
-
-  showDNA();
-</script>
-
+    showDNA();
+  </script>
 </body>
 </html>
