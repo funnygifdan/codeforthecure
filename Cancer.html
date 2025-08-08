@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DNA Mutation Simulator</title>
+  <style>
+    body {
+      background: #000;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 2rem;
+    }
+    h1 {
+      color: #0f0;
+    }
+    .dna {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      word-wrap: break-word;
+    }
+    .mutated {
+      color: red;
+      text-shadow: 0 0 5px red;
+    }
+    .result {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+    }
+    button {
+      background: #00ff00;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>DNA Mutation Simulator</h1>
+
+<div class="dna" id="dnaDisplay"></div>
+<button onclick="mutateDNA()">Mutate DNA</button>
+
+<div class="result" id="result"></div>
+
+<script>
+  const basePairs = ['A', 'T', 'C', 'G'];
+  let dna = Array.from({length: 50}, () => basePairs[Math.floor(Math.random() * 4)]);
+
+  function showDNA() {
+    const display = dna.map((base, i) => {
+      return `<span id="bp${i}">${base}</span>`;
+    }).join('');
+    document.getElementById('dnaDisplay').innerHTML = display;
+  }
+
+  function mutateDNA() {
+    const mutationPoint = Math.floor(Math.random() * dna.length);
+    let original = dna[mutationPoint];
+    let newBase = basePairs.filter(bp => bp !== original)[Math.floor(Math.random() * 3)];
+
+    dna[mutationPoint] = newBase;
+
+    document.getElementById(`bp${mutationPoint}`).classList.add("mutated");
+
+    // Now we check if the mutation triggers cancer
+    const dangerZone = [5, 12, 25, 33]; // pretend these are cancer-critical genes
+    const isCancerous = dangerZone.includes(mutationPoint);
+
+    const resultText = isCancerous
+      ? "⚠️ Dangerous Mutation! This cell may become cancerous!"
+      : "✅ Minor Mutation. No cancer detected.";
+
+    document.getElementById('result').innerText = resultText;
+  }
+
+  showDNA();
+</script>
+
+</body>
+</html>
