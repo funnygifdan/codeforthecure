@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Mutation & Immunity Simulator</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    overflow-x: hidden;
+    padding: 1rem;
+  }
+
+  header, footer {
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    padding: 0.5rem;
+    z-index: 1000;
+    text-align: center;
+  }
+
+  header {
+    top: 0;
+    border-bottom: 1px solid #00ff00;
+  }
+
+  footer {
+    bottom: 0;
+    border-top: 1px solid #00ff00;
+  }
+
+  main {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 1rem;
+  }
+
+  section {
+    margin-bottom: 2rem;
+    border: 1px solid #00ff00;
+    padding: 1rem;
+    background: #000000cc;
+  }
+
+  label, input {
+    display: block;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  .bar {
+    height: 20px;
+    background: #222;
+    border: 1px solid #00ff00;
+    margin: 0.5rem 0;
+    position: relative;
+  }
+
+  .bar-inner {
+    height: 100%;
+    background: #00ff00;
+    width: 0;
+    transition: width 0.3s ease;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧬 Mutation & Immune System Simulator 💉</h1>
+</header>
+
+<main>
+  <section>
+    <h2>1. Mutation Stress Meter</h2>
+    <input type="range" id="mutationRange" min="0" max="100" value="0" />
+    <div class="bar"><div id="mutationBar" class="bar-inner"></div></div>
+  </section>
+
+  <section>
+    <h2>2. Immune Suppression Bar</h2>
+    <input type="range" id="suppressionRange" min="0" max="100" value="0" />
+    <div class="bar"><div id="suppressionBar" class="bar-inner"></div></div>
+  </section>
+
+  <section>
+    <h2>3. Tumor Threat Calculation</h2>
+    <p><strong>Formula:</strong> Mutation Stress + Immune Suppression = Threat Level</p>
+    <div class="bar"><div id="threatBar" class="bar-inner"></div></div>
+    <p id="threatLabel">Threat Level: 0%</p>
+  </section>
+</main>
+
+<footer>
+  <p>⚡ Real-Time Biological Engine v1.0 - Powered by ChatGPT & Buggy's Brain ⚡</p>
+</footer>
+
+<script>
+  const mutationInput = document.getElementById('mutationRange');
+  const suppressionInput = document.getElementById('suppressionRange');
+  const mutationBar = document.getElementById('mutationBar');
+  const suppressionBar = document.getElementById('suppressionBar');
+  const threatBar = document.getElementById('threatBar');
+  const threatLabel = document.getElementById('threatLabel');
+
+  function updateUI() {
+    const mutation = parseInt(mutationInput.value);
+    const suppression = parseInt(suppressionInput.value);
+    const threat = Math.min(mutation + suppression, 100);
+
+    mutationBar.style.width = mutation + '%';
+    suppressionBar.style.width = suppression + '%';
+    threatBar.style.width = threat + '%';
+    threatLabel.textContent = 'Threat Level: ' + threat + '%';
+  }
+
+  mutationInput.addEventListener('input', updateUI);
+  suppressionInput.addEventListener('input', updateUI);
+
+  updateUI();
+</script>
+
+</body>
+</html>

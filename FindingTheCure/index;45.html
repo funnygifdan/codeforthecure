@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cell Wars: Code vs Cancer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin: 0;
+    padding: 2vh;
+    background-color: #000;
+    font-family: monospace;
+    color: #00ff00;
+    text-align: center;
+  }
+  h1, h2 {
+    color: #00ff00;
+    margin-bottom: 1vh;
+  }
+  button {
+    background-color: #00ff00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .section {
+    border-top: 2px solid #00ff00;
+    padding-top: 2vh;
+    margin-top: 3vh;
+  }
+  .dna-seq {
+    color: red;
+    font-size: 1.2em;
+    margin: 1vh 0;
+  }
+  .result {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 1vh 0;
+  }
+  .icon {
+    font-size: 1.4em;
+    margin-right: 0.5em;
+  }
+  #copyLink {
+    font-size: 0.9em;
+    background: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+  }
+</style>
+</head>
+<body>
+
+<h1>🧬 Cell Wars: Code vs Cancer</h1>
+<button id="copyLink">📎 Copy Site Link</button>
+
+<div class="section">
+  <h2>🧬 Cancer Stages Legend</h2>
+  <p>🧬 Mutation: DNA gets damaged.</p>
+  <p>🧬 Detection: Immune system spots it.</p>
+  <p>🧬 Attachment: Killer cells engage.</p>
+  <p>🧬 Destruction: Boom, mutation gone.</p>
+</div>
+
+<div class="section">
+  <h2>🔬 Protein Mutation Breakdown</h2>
+  <p>1️⃣ Protein Folding Begins</p>
+  <p>2️⃣ Amino Acid Chain Assembles</p>
+  <p>3️⃣ Folding Errors Detected</p>
+  <p>4️⃣ Cell Sends SOS or Apoptosis</p>
+  <p>5️⃣ Immune Surveillance Activated</p>
+</div>
+
+<div class="section">
+  <h2>⚠️ Mutation Simulator</h2>
+  <div class="dna-seq" id="dna">ACCATTAGGCCCCGTGAACTAATGCCTAATTACCCCGGTTGTGCGCGGGCA</div>
+  <button onclick="mutateDNA()">🧬 Mutate DNA</button>
+  <div class="result" id="mutationResult">✅ Minor Mutation. No cancer detected.</div>
+</div>
+
+<div class="section">
+  <h2>🚀 Immune Defender Mini–Game</h2>
+  <p>Launch a T-cell at the mutation:</p>
+  <button onclick="launchTCell()">🚀 Launch T-Cell</button>
+  <div class="result" id="immuneResult">🧠 Target Locked. Mutation neutralized!</div>
+</div>
+
+<div class="section">
+  <p>Buggy’s Immune Strike — Built with 💚, Code & Rage</p>
+</div>
+
+<script>
+function mutateDNA() {
+  const mutationResult = document.getElementById("mutationResult");
+  const rand = Math.random();
+  if (rand < 0.3) {
+    mutationResult.textContent = "✅ Minor Mutation. No cancer detected.";
+    mutationResult.style.color = "#00ff00";
+  } else if (rand < 0.7) {
+    mutationResult.textContent = "🟡 Warning: Potential cancerous mutation!";
+    mutationResult.style.color = "yellow";
+  } else {
+    mutationResult.textContent = "❌ Major Mutation Detected! Risk of cancer.";
+    mutationResult.style.color = "red";
+  }
+}
+
+function launchTCell() {
+  const immuneResult = document.getElementById("immuneResult");
+  const rand = Math.random();
+  if (rand < 0.5) {
+    immuneResult.textContent = "✅ Mutation destroyed. You win!";
+    immuneResult.style.color = "#00ff00";
+  } else {
+    immuneResult.textContent = "⚠️ T-cell missed the target. Try again.";
+    immuneResult.style.color = "yellow";
+  }
+}
+
+document.getElementById("copyLink").onclick = function() {
+  const siteLink = "https://currcancer.netlify.app";
+  navigator.clipboard.writeText(siteLink).then(() => {
+    const btn = document.getElementById("copyLink");
+    btn.textContent = "✅ Link Copied!";
+    setTimeout(() => {
+      btn.textContent = "📎 Copy Site Link";
+    }, 2000);
+  });
+};
+</script>
+
+</body>
+</html>

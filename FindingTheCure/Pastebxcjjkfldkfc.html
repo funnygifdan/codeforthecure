@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- 🔒 NO DOUBLE-TAP ZOOM -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CurrCancer — Interactive ImmunoStrike</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      color: #00ff00;
+      font-family: monospace;
+      overflow-x: hidden;
+    }
+
+    /* Fixed header and footer */
+    header, footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      background: #000;
+      color: #00ff00;
+      text-align: center;
+      padding: 1rem;
+      z-index: 9999;
+    }
+
+    header {
+      top: 0;
+      border-bottom: 2px solid #00ff00;
+    }
+
+    footer {
+      bottom: 0;
+      border-top: 2px solid #00ff00;
+    }
+
+    /* Scrollable content with padding */
+    .content {
+      padding: 6rem 1rem 6rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      color: #00ff00;
+      text-align: center;
+    }
+
+    img {
+      display: block;
+      margin: 1rem auto;
+      max-width: 100%;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    .stage, .legend, .game, .shareBox {
+      margin-bottom: 4rem;
+    }
+
+    .caption {
+      text-align: center;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    .dna {
+      font-size: 1.2rem;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .mutated {
+      color: red !important;
+      animation: glow 1s ease-in-out, shake 0.3s ease-in-out;
+    }
+
+    .result, .tcellResult {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.3rem;
+    }
+
+    button {
+      background: #00ff00;
+      color: #000;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin: 0.5rem auto;
+      display: block;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li::before {
+      content: "🧬 ";
+    }
+
+    /* Mutation Animation */
+    @keyframes glow {
+      0% { text-shadow: 0 0 0 red; }
+      50% { text-shadow: 0 0 8px red; }
+      100% { text-shadow: 0 0 2px red; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      50% { transform: translateX(2px); }
+      75% { transform: translateX(-2px); }
+    }
+
+    /* T-Cell missile animation */
+    @keyframes zoomToTarget {
+      0% { transform: scale(1) translateX(0); opacity: 1; }
+      100% { transform: scale(2) translate(80vw, -50px); opacity: 0; }
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(3); text-shadow: 0 0 25px red; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    .tcell {
+      position: fixed;
+      top: 70%;
+      left: 0;
+      font-size: 2rem;
+      z-index: 10000;
+      animation: zoomToTarget 1.2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    .explode {
+      animation: explode 0.5s ease-out forwards;
+      color: red;
+    }
+
+    .shareBox {
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Stages of Cancer – Interactive Battle</h1>
+</header>
+
+<div class="content">
+  <!-- CANCER STAGES -->
+  <div class="stage">
+    <h2>1. Mutation Begins</h2>
+    <img src="https://tse1.mm.bing.net/th/id/OIP.-I0A-nbErJofdCfPi-H9PQHaFj?pid=Api">
+    <div class="caption">DNA breaks and starts multiplying out of control.</div>
+  </div>
+
+  <div class="stage">
+    <h2>2. Immune Cells Approach</h2>
+    <img src="https://tse1.mm.bing.net/th/id/OIP.wFFrNw9tJ3CkAMLc0QbK6AHaF7?pid=Api">
+    <div class="caption">White blood cells spot the intruder and begin pursuit.</div>
+  </div>
+
+  <div class="stage">
+    <h2>3. Contact and Attack</h2>
+    <img src="https://tse2.mm.bing.net/th/id/OIP.AEqP0T_W-zrfkox9K206EQHaGq?pid=Api">
+    <div class="caption">Natural killer cells grab hold and prepare for battle.</div>
+  </div>
+
+  <div class="stage">
+    <h2>4. Full Immune Response</h2>
+    <img src="https://tse4.mm.bing.net/th/id/OIP.TDlfsWGP4YUZiBqUNihZpgHaEK?pid=Api">
+    <div class="caption">Your immune army deploys for a final attack.</div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <h2>🧬 Cancer Stages Legend</h2>
+    <ul>
+      <li>Mutation: DNA gets damaged.</li>
+      <li>Detection: Immune system spots it.</li>
+      <li>Attachment: Killer cells engage.</li>
+      <li>Destruction: Boom, mutation gone.</li>
+    </ul>
+  </div>
+
+  <!-- MUTATION SIMULATOR -->
+  <div class="game">
+    <h2>⚠️ Mutation Simulator</h2>
+    <div class="dna" id="dnaDisplay"></div>
+    <button onclick="mutateDNA()">Mutate DNA</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <!-- IMMUNE BLASTER -->
+  <div class="game">
+    <h2>🚀 Immune Defender Mini-Game</h2>
+    <p style="text-align:center;">Launch a T-cell at the mutation:</p>
+    <button onclick="fireTCell()">🚀 Launch T-Cell</button>
+    <div class="tcellResult" id="tcellResult"></div>
+  </div>
+
+  <!-- SHARE -->
+  <div class="shareBox">
+    <h2>💡 Share What You Learned</h2>
+    <p>Educate someone. Or nuke misinformation. Either works.</p>
+    <button onclick="alert('Link copied! (Pretend mode 😎)')">🔗 Copy Link</button>
+  </div>
+</div>
+
+<footer>
+  <p>Buggy’s Immune Strike – Built with 💚, Code & Rage</p>
+</footer>
+
+<script>
+  const basePairs = ['A', 'T', 'C', 'G'];
+  let dna = Array.from({length: 50}, () => basePairs[Math.floor(Math.random() * 4)]);
+  const dangerZones = [5, 12, 25, 33];
+
+  function showDNA() {
+    const display = dna.map((base, i) => `<span id="bp${i}">${base}</span>`).join('');
+    document.getElementById('dnaDisplay').innerHTML = display;
+  }
+
+  function mutateDNA() {
+    const idx = Math.floor(Math.random() * dna.length);
+    const orig = dna[idx];
+    const newBase = basePairs.filter(b => b !== orig)[Math.floor(Math.random() * 3)];
+    dna[idx] = newBase;
+
+    const bp = document.getElementById(`bp${idx}`);
+    bp.textContent = newBase;
+    bp.classList.remove("mutated");
+    void bp.offsetWidth;
+    bp.classList.add("mutated");
+
+    const result = dangerZones.includes(idx)
+      ? "⚠️ Dangerous Mutation! This cell may become cancerous!"
+      : "✅ Minor Mutation. No cancer detected.";
+
+    document.getElementById('result').innerText = result;
+  }
+
+  function fireTCell() {
+    const hit = Math.random() > 0.4;
+    const cell = document.createElement('div');
+    cell.textContent = '🧫';
+    cell.className = 'tcell';
+    document.body.appendChild(cell);
+
+    setTimeout(() => {
+      if (hit) cell.classList.add('explode');
+      setTimeout(() => cell.remove(), 1000);
+    }, 1000);
+
+    document.getElementById('tcellResult').innerText = hit
+      ? "💥 T-cell blasted the mutation!"
+      : "😬 T-cell missed. Try again!";
+  }
+
+  window.onload = showDNA;
+</script>
+
+</body>
+</html>

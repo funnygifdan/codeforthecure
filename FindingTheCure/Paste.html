@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Coding for the Cure</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: #00ff00;
+  font-family: monospace;
+  overflow-x: hidden;
+}
+header, footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: black;
+  border-bottom: 2px solid #00ff00;
+  text-align: center;
+  padding: 10px;
+}
+header {
+  top: 0;
+  height: 70px;
+}
+footer {
+  bottom: 0;
+  border-top: 2px solid #00ff00;
+}
+main {
+  padding: 80px 20px 100px;
+}
+button, .menu-link {
+  background: none;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 8px 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+#menuToggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2000;
+  font-size: 30px;
+  color: #00ff00;
+  cursor: pointer;
+}
+#menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.95);
+  color: #00ff00;
+  z-index: 1999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding-top: 80px;
+}
+#menuOverlay a {
+  margin: 20px;
+  color: #00ff00;
+  text-decoration: none;
+  font-size: 20px;
+}
+#copyLinkStatus {
+  margin-top: 10px;
+  color: yellow;
+}
+.section {
+  margin-bottom: 60px;
+}
+</style>
+</head>
+<body>
+
+<header><h1>Coding for the Cure</h1></header>
+<div id="menuToggle">☰</div>
+<div id="menuOverlay">
+  <a href="#mutation">Mutation Simulator</a>
+  <a href="#game">Immune Defender Game</a>
+  <a href="#legend">Legend</a>
+  <a href="#faq">Q&A</a>
+  <a href="#" onclick="copyLink()">Copy Page Link</a>
+  <div id="copyLinkStatus"></div>
+</div>
+
+<main>
+<section id="mutation" class="section">
+  <h2>Mutation Simulator</h2>
+  <button onclick="launchMissile()">Inject Mutation Sequence</button>
+  <div id="blastResult"></div>
+</section>
+
+<section id="game" class="section">
+  <h2>Immune Defender Game</h2>
+  <button onclick="fireTCell()">Launch T-Cell</button>
+  <div id="immuneStatus"></div>
+</section>
+
+<section id="legend" class="section">
+  <h2>Mutation Legend</h2>
+  <ul>
+    <li>🧬 ATG – Start Codon</li>
+    <li>💥 TGA – Stop Codon</li>
+    <li>🧪 CCA – Protein Build 1</li>
+    <li>⚡ GGG – Mutation Hotspot</li>
+    <li>🧫 TTT – Tumor Suppressor</li>
+  </ul>
+</section>
+
+<section id="faq" class="section">
+  <h2>Q&A</h2>
+  <p><strong>Q:</strong> What’s a T-cell?<br><strong>A:</strong> A soldier in your bloodstream, ready to destroy invaders.</p>
+  <p><strong>Q:</strong> Can mutations be reversed?<br><strong>A:</strong> Some can be repaired; some lead to cancer. That’s why we simulate!</p>
+</section>
+</main>
+
+<footer><p>© 2025 Coding for the Cure • <a href="https://currcancer.netlify.app" style="color:#00ff00;">Visit Site</a></p></footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const menuOverlay = document.getElementById('menuOverlay');
+
+menuToggle.onclick = () => {
+  const state = menuOverlay.style.display;
+  menuOverlay.style.display = (state === 'flex') ? 'none' : 'flex';
+  document.body.style.overflow = (state === 'flex') ? 'auto' : 'hidden';
+};
+
+function launchMissile() {
+  const result = document.getElementById('blastResult');
+  result.innerHTML = '🚀 Missile launched toward cancer cell...<br>🧠 Target hit! Cell neutralized.';
+}
+
+function fireTCell() {
+  const status = document.getElementById('immuneStatus');
+  const success = Math.random() > 0.3;
+  status.innerHTML = success
+    ? '🧬 T-cell locked on! Cancer cell destroyed 💥'
+    : '⚠️ T-cell missed. Retargeting...';
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    document.getElementById('copyLinkStatus').innerText = '✅ Link copied to clipboard!';
+  }).catch(() => {
+    document.getElementById('copyLinkStatus').innerText = '❌ Could not copy link.';
+  });
+}
+</script>
+
+</body>
+</html>

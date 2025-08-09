@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CureCancer</title>
+<style>
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: monospace;
+  background: #000;
+  color: #00ff00;
+  overflow: hidden;
+}
+
+header { 
+  background: #000;
+  border-bottom: 3px solid #00ff00;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000; 
+}
+
+footer {
+  background: #000;
+  border-top: 3px solid #00ff00;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1000;
+}
+
+main {
+  position: absolute;
+  top: 80px;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Overlay menu */
+#menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.9);
+  width: 250px;
+  height: 100%;
+  padding: 20px;
+  display: none;
+  z-index: 2000;
+}
+#menuOverlay a {
+  display: block;
+  color: #00ff00;
+  margin-bottom: 15px;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+#menuToggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #000;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+  font-size: 1.5em;
+  z-index: 2001;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+section {
+  margin-bottom: 60px;
+}
+section h2 {
+  font-size: 1.5em;
+  border-bottom: 2px solid #00ff00;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+}
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  background: #000;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  font-size: 1em;
+  cursor: pointer;
+}
+.faq-answer {
+  display: none;
+  padding: 10px;
+  border-left: 2px solid #00ff00;
+  border-right: 2px solid #00ff00;
+  border-bottom: 2px solid #00ff00;
+  background: #111;
+}
+.faq-question.active + .faq-answer {
+  display: block;
+}
+
+button.copy-link {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #00ff00;
+  color: #000;
+  border: none;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!--——————————————————————————-->
+<section id="welcome">
+  <h2>
+    Welcome together we will learn finding a way to cure cancer for good!
+  </h2>
+</section>
+
+<!-- Menu Toggle and Overlay -->
+<div id="menuToggle">☰</div>
+<div id="menuOverlay">
+  <a href="#welcome">Welcome</a>
+  <a href="#legend">Legend</a>
+  <a href="#module1">Module 1: What is Cancer?</a>
+  <a href="#module2">Module 2: How Does Cancer Begin?</a>
+  <a href="#module3">Module 3: Immune System vs Cancer</a>
+  <a href="#module4">Module 4: How Scientists Fight</a>
+  <a href="#module5">Module 5: Games</a>
+  <a href="#module6">Module 6: Quiz & Review</a>
+  <a href="#faq">Q&A</a>
+</div>
+
+<!--——————————————————————————-->
+<header>
+  <h1>CureCancer</h1>
+  <p>Simulate. Educate. Mutate.</p>
+</header>
+
+<!--——————————————————————————-->
+<main>
+
+<!--——————————————————————————-->
+<section id="legend">
+  <h2>Legend</h2>
+  <ul>
+    <li><b>🧬 DNA:</b> Your body’s code.</li>
+    <li><b>⚛️ Mutation:</b> Random changes in DNA.</li>
+    <li><b>🦠 Cancer Cell:</b> Rogue cell dividing too fast.</li>
+    <li><b>🛡️ T-Cell:</b> Immune warrior cell.</li>
+  </ul>
+
+  <!--——————————————————————————-->
+  <section id="module1">
+    <h3>Module 1: What is Cancer?</h3>
+    <ul>
+      <li id="module1-1">1.1 What is a Cell?</li>
+      <li id="module1-2">1.2 What is DNA and How Does It Work?</li>
+      <li id="module1-3">1.3 What is a Mutation?</li>
+      <li id="module1-4">1.4 Normal Cells vs Cancer Cells</li>
+    </ul>
+  </section>
+
+  <!--——————————————————————————-->
+  <section id="module2">
+    <h3>🧬 Module 2: How Does Cancer Begin?</h3>
+    <ul>
+      <li id="module2-1">2.1 Causes of Mutations (Radiation, Viruses, Genetics)</li>
+      <li id="module2-2">2.2 The Cell Cycle: How Cells Normally Grow</li>
+      <li id="module2-3">2.3 When Growth Goes Wrong: Tumors and Malignancy</li>
+      <li id="module2-4">2.4 Stages of Cancer Development</li>
+    </ul>
+  </section>
+
+  <!--——————————————————————————-->
+  <section id="module3">
+    <h3>🛡️ Module 3: The Immune System vs Cancer</h3>
+    <ul>
+      <li id="module3-1">3.1 Meet the Defenders: T-Cells, B-Cells, and Natural Killers</li>
+      <li id="module3-2">3.2 Surveillance Mode: Spotting the Intruder</li>
+      <li id="module3-3">3.3 Immune Attack: How Your Body Fights Back</li>
+      <li id="module3-4">3.4 Immune Evasion: How Cancer Hides and Wins</li>
+    </ul>
+  </section>
+
+  <!--——————————————————————————-->
+  <section id="module4">
+    <h3>🧪 Module 4: How Scientists Fight Cancer</h3>
+    <ul>
+      <li id="module4-1">4.1 Immunotherapy: Turning the Immune System into a Weapon</li>
+      <li id="module4-2">4.2 Targeted Drugs and Precision Medicine</li>
+      <li id="module4-3">4.3 Gene Editing (CRISPR) to Reprogram Cells</li>
+      <li id="module4-4">4.4 Cancer Vaccines (like mRNA)</li>
+      <li id="module4-5">4.5 Artificial Intelligence & Data in Cancer Research</li>
+    </ul>
+  </section>
+
+  <!--——————————————————————————-->
+  <section id="module5">
+    <h3>🎮 Module 5: Interactive Learning & Games</h3>
+    <ul>
+      <li id="module5-1">5.1 Mutation Simulator (Click-to-Mutate DNA Strings)</li>
+      <li id="module5-2">5.2 Immune Defender (Launch a T-Cell!)</li>
+      <li id="module5-3">5.3 Build-a-Cell (Make a Healthy vs Cancerous Cell)</li>
+      <li id="module5-4">5.4 CRISPR Puzzle (Target & Cut the Right Gene)</li>
+      <li id="module5-5">5.5 Drug Quest (Match Therapy to Cancer Type)</li>
+    </ul>
+  </section>
+
+  <!--——————————————————————————-->
+  <section id="module6">
+    <h3>📚 Module 6: Review, Reflect, and Quiz</h3>
+    <ul>
+      <li id="module6-1">6.1 Flashcards & Definitions</li>
+      <li id="module6-2">6.2 Scenario-Based Challenges (“What would you do if…?”)</li>
+      <li id="module6-3">6.3 Quiz Yourself (Multiple Choice)</li>
+      <li id="module6-4">6.4 Story Mode: Choose a Cancer Patient’s Journey</li>
+      <li id="module6-5">6.5 Share What You Learned</li>
+    </ul>
+  </section>
+
+</section>
+
+
+
+<!--——————————————————————————-->
+<section id="immune">
+  <h2>Immune Defender Mini-Game</h2>
+  <p>🦠 Launch a T-cell! Watch it hit or miss the cancer cell.</p>
+  <button onclick="launchTCell()">🚀 Deploy T-Cell</button>
+  <div id="immuneAnimation" style="margin-top:20px;height:100px;"></div>
+</section>
+
+<!--——————————————————————————-->
+<section id="mutation">
+  <h2>DNA Mutation Simulator</h2>
+  <p>⚗️ Simulates random point mutations to DNA. Learn how mutations impact proteins.</p>
+  <button onclick="simulateMutation()">🔁 Mutate!</button>
+  <pre id="mutationResult">[ DNA Sequence Appears Here ]</pre>
+</section>
+
+<!--——————————————————————————-->
+<section id="faq">
+  <h2>Questions & Answers</h2>
+  <div class="faq-item">
+    <button class="faq-question">What is a T-Cell?</button>
+    <div class="faq-answer">A type of white blood cell that attacks infected or abnormal cells.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">What are immune checkpoint inhibitors?</button>
+    <div class="faq-answer">Medicines that help T-cells recognize and attack cancer cells.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">Why would the immune system be suppressed?</button>
+    <div class="faq-answer">Some cancer cells trick the body into suppressing immune responses — inhibitors block that trickery.</div>
+  </div>
+</section>
+
+</main>
+
+<!--——————————————————————————-->
+<footer>
+  <p>Finding the cure for cance.</p>
+</footer>
+
+<!--——————————————————————————-->
+<script>
+document.querySelector('#menuToggle').addEventListener('click', () => {
+  const menu = document.querySelector('#menuOverlay');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+});
+
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    q.classList.toggle('active');
+    const answer = q.nextElementSibling;
+    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+  });
+});
+
+function simulateMutation() {
+  const bases = ['A', 'T', 'C', 'G'];
+  let dna = '';
+  for (let i = 0; i < 30; i++) {
+    dna += bases[Math.floor(Math.random() * bases.length)];
+  }
+  document.getElementById('mutationResult').textContent = dna;
+}
+
+function launchTCell() {
+  const anim = document.getElementById('immuneAnimation');
+  anim.innerHTML = '🛡️ ➡️ 🦠';
+  setTimeout(() => {
+    const hit = Math.random() > 0.5;
+    anim.innerHTML = hit ? '💥 HIT! T-Cell destroyed cancer.' : '❌ MISS! T-Cell failed.';
+  }, 1000);
+}
+
+function copyLink() {
+  const link = "https://currcancer.netlify.app";
+  navigator.clipboard.writeText(link);
+  alert("📋 Link copied: " + link);
+}
+</script>
+
+</body>
+</html>
